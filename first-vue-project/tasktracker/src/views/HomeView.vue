@@ -1,18 +1,42 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <Tasks v-bind:completedTasks="completedTasks" v-bind:inCompletedTasks="inCompletedTasks"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Tasks from '@/components/Tasks.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    Tasks
+  },
+  data(){
+    return{
+      completedTasks:[],
+      inCompletedTasks:[]
+    }
+  },
+  created(){
+    this.completedTask=[{
+      text:"Learn Vue",
+      day:"March 24th at 1:30",
+      reminder: true,
+      completed:true,
+      createdBy:"test@gmail.com",
+      id:1
+    }];
+    this.inCompletedTask=[{
+      text:"Go to dentist",
+      day:"March 24th at 1:30",
+      reminder: false,
+      completed:false,
+      createdBy:"test@gmail.com",
+      id:2
+    }]
   }
 }
 </script>
