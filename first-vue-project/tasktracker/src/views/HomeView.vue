@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-
     <Tasks v-bind:completedTasks="completedTasks" v-bind:inCompletedTasks="inCompletedTasks"/>
   </div>
 </template>
@@ -20,23 +19,31 @@ export default {
       inCompletedTasks:[]
     }
   },
-  created(){
-    this.completedTask=[{
-      text:"Learn Vue",
-      day:"March 24th at 1:30",
-      reminder: true,
-      completed:true,
-      createdBy:"test@gmail.com",
-      id:1
-    }];
-    this.inCompletedTask=[{
-      text:"Go to dentist",
-      day:"March 24th at 1:30",
-      reminder: false,
-      completed:false,
-      createdBy:"test@gmail.com",
-      id:2
-    }]
+  methods:{
+    async fetchTasks(){
+      const res = await fetch("http://localhost:5001/tasks");
+      const data = await res.json();
+      return data;
+    },
+    async onDelete(id){
+      console.log("Home Component" + id)
+      const res = await fetch(`http://localhost:5001/tasks/${id}`,{
+        method: "DELETE",
+      });
+        if(res.status ==200){
+          this.inCompletedTasks = this.inCompletedTasks.filter(
+            (task)=> task.id !=id
+          )
+        }else{
+          alert("Error Deleting Data");
+        }
+        console.log(res.status)
+      }
+    },
+    async created(){
+    const tasks = await this.fetchTasks();
+    this.completedTasks = tasks.filter((task)=> task.completed === true);
+    this.inCompletedTasks = tasks.filter((task)=> task.completed === false);
   }
 }
 </script>

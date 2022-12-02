@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-  <Header  title="Task Tracker"/>
+  <Header title="Task Tracker"/>
   <router-view></router-view>
   <Footer />
   </div>

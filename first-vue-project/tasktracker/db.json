@@ -1,0 +1,21 @@
+{
+  "tasks":[
+    
+  {
+      "text":"Learn Vue",
+      "day":"March 24th at 1:30",
+      "reminder": true,
+      "completed":true,
+      "createdBy":"test@gmail.com",
+      "id":1
+    },
+    {
+      "text":"Go to dentist",
+      "day":"March 24th at 1:30",
+      "reminder": false,
+      "completed":false,
+      "createdBy":"test@gmail.com",
+      "id":2
+    }
+  ]
+}
