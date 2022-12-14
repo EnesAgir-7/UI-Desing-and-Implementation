@@ -1,21 +1,48 @@
 {
-  "tasks":[
-    
-  {
-      "text":"Learn Vue",
-      "day":"March 24th at 1:30",
-      "reminder": true,
-      "completed":true,
-      "createdBy":"test@gmail.com",
-      "id":1
+  "tasks": [
+    {
+      "text": "Learn Vue 1",
+      "day": "March 24th at 1.30",
+      "reminder": false,
+      "completed": true,
+      "createdBy": "test@gmail.com",
+      "id": 1
     },
     {
-      "text":"Go to dentist",
-      "day":"March 24th at 1:30",
+      "text": "Learn Vuef",
+      "day": "March 24th at 1.30",
       "reminder": false,
-      "completed":false,
-      "createdBy":"test@gmail.com",
-      "id":2
+      "completed": false,
+      "createyBy": "test@gmail.com",
+      "id": 2
+    },
+    {
+      "text": "Go To Dentist",
+      "day": "March 24th at 1.45",
+      "reminder": false,
+      "completed": true,
+      "createyBy": "test@gmail.com",
+      "id": 7
+    },
+    {
+      "text": "learn Angular",
+      "day": "March 28th at 1.30",
+      "reminder": false,
+      "completed": false,
+      "createdBy": "dummy",
+      "id": 8
+    }
+  ],
+  "users": [
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$dtLpDwg8GAc10xjdmzccbeDdQo72/g9BvSc/t6TK7UCr5lKinrvZ2",
+      "id": 1
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "$2a$10$bHYVBxYx1e6NQVSa7ZroOu.LPAGiUKg6NrTK7LX1Y9rSIgURnBSNK",
+      "id": 2
     }
   ]
 }

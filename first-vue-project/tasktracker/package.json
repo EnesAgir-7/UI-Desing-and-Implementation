@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "db": "json-server --watch db.json --port 5001"
-
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "core-js": "^3.8.3",
     "json-server": "^0.17.1",
     "vue": "^3.2.13",
