@@ -111,10 +111,24 @@ export default {
           }
           console.log(userName);
         } else if (this.isLoginActive) {
-          // fetch the user via email
-          //compare ths passowrd from the user vs the password from the db
-          // let userPasswordMatch =  bcrypt.compareSync(userPassword,passsowrdFromDb)
-          // emit a event which says user is authenticated
+          const existingUser = await fetch(
+            `${localHost}/users?email=${this.email}`
+          );
+          const existingUserData = await existingUser.json();
+          if (existingUserData.length > 0) {
+            let doesPasswordMatch = bcrypt.compareSync(
+              this.password,
+              existingUserData[0].password
+            );
+            if (doesPasswordMatch) {
+              this.$emit("user-authenticated", existingUserData[0].email);
+              this.isLoginActive = false;
+            } else {
+              alert("Password does not match");
+            }
+          } else {
+            alert("User Not Found");
+          }
         }
       } else {
         alert("Email or Password Not valid should be greater that 6 digits ");

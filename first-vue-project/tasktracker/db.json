@@ -31,17 +31,41 @@
       "completed": false,
       "createdBy": "dummy",
       "id": 8
+    },
+    {
+      "text": "Test Login",
+      "day": "March 30th at 1.30",
+      "reminder": false,
+      "completed": false,
+      "createdBy": "dummy",
+      "id": 9
+    },
+    {
+      "text": "Test 1 ",
+      "day": "March 24th at 1.30",
+      "reminder": false,
+      "completed": false,
+      "createdBy": "test1@gmail.com",
+      "id": 11
+    },
+    {
+      "text": "GO to dentist",
+      "day": "April 24 12:00",
+      "reminder": false,
+      "completed": false,
+      "createdBy": "test@gmail.com",
+      "id": 12
     }
   ],
   "users": [
     {
       "email": "test@gmail.com",
-      "password": "$2a$10$dtLpDwg8GAc10xjdmzccbeDdQo72/g9BvSc/t6TK7UCr5lKinrvZ2",
+      "password": "$2a$10$jzzjbp8crcgAspQuYl4KAOGc5Pyag9tEVdMeo6hoUpoMbOXam8o4O",
       "id": 1
     },
     {
       "email": "test1@gmail.com",
-      "password": "$2a$10$bHYVBxYx1e6NQVSa7ZroOu.LPAGiUKg6NrTK7LX1Y9rSIgURnBSNK",
+      "password": "$2a$10$OzsTfbx9jupEOSxzMwkqBuKuti1.4.swMmNqYf0Zibf1v.rkWSm7q",
       "id": 2
     }
   ]

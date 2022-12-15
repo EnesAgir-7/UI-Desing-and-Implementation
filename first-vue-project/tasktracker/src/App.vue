@@ -5,9 +5,12 @@
       v-bind:showAddTask="showAddTask"
       @toggle-AddTask="toggleAddTask"
       v-bind:isUserLoggedIn="isLoggedIn"
+      @user-authenticated="userAuthenticated"
+      @user-notAuthenticated="userNotAuthenticated"
     />
     <router-view
       v-bind:showAddTask="showAddTask"
+      v-bind:userName="userName"
       v-if="isLoggedIn"
     ></router-view>
     <Footer />
@@ -17,7 +20,7 @@
 <script>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-
+import { localHost } from "./urls";
 export default {
   name: "App",
   components: {
@@ -28,12 +31,33 @@ export default {
     return {
       showAddTask: false,
       isLoggedIn: false,
+      userName: null,
     };
   },
   methods: {
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
     },
+    userAuthenticated(email) {
+      this.isLoggedIn = true;
+      this.userName = email;
+      const encodedEmail = window.btoa(email); // encode a string
+      sessionStorage.setItem("username", encodedEmail);
+    },
+    userNotAuthenticated() {
+      this.isLoggedIn = false;
+      sessionStorage.setItem("username", "");
+    },
+  },
+  async created() {
+    let userName = sessionStorage.getItem("username");
+    const decodedEmail = window.atob(userName); // decode the string
+    const users = await fetch(`${localHost}/users?email=${decodedEmail}`);
+    const user = await users.json();
+    if (user.length === 1) {
+      this.userName = decodedEmail;
+      this.isLoggedIn = true;
+    }
   },
 };
 </script>

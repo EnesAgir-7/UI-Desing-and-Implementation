@@ -2,8 +2,16 @@
   <header>
     <div class="header">
       <h1>{{ title }}</h1>
+      <i
+        class="fa fa-power-off"
+        v-if="isUserLoggedIn"
+        @click="handleLogout()"
+      ></i>
     </div>
-    <Login v-bind:isUserLoggedIn="isUserLoggedIn" />
+    <Login
+      v-bind:isUserLoggedIn="isUserLoggedIn"
+      @user-authenticated="userAuthenticated"
+    />
     <div class="buttons" v-if="isUserLoggedIn">
       <Button
         eventName="Add-Task"
@@ -34,7 +42,14 @@ export default {
     handleToggleAddTask() {
       this.$emit("toggle-AddTask");
     },
+    userAuthenticated(email) {
+      this.$emit("user-authenticated", email);
+    },
+    handleLogout() {
+      this.$emit("user-notAuthenticated");
+    },
   },
+  emits: ["toggle-AddTask", "user-authenticated", "user-notAuthenticated"],
 };
 </script>
 
@@ -52,5 +67,11 @@ header {
 }
 .buttons {
   display: flex;
+}
+.fa-power-off {
+  position: relative;
+  left: 45%;
+  font-size: 20px;
+  color: red;
 }
 </style>

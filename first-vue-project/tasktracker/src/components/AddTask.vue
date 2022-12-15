@@ -32,6 +32,9 @@ export default {
       completed: false,
     };
   },
+  props: {
+    userName: String,
+  },
   methods: {
     onSubmit(e) {
       e.preventDefault();
@@ -40,14 +43,14 @@ export default {
         alert("Please add a task");
         return;
       }
-
+      console.log(this.userName);
       const newTask = {
         // id: Math.floor(Math.random() * 10000),
         text: this.text,
         day: this.day,
         reminder: this.reminder,
         completed: this.completed,
-        createdBy: "dummy",
+        createdBy: this.userName,
       };
 
       this.text = "";

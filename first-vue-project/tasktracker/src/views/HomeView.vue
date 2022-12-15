@@ -1,10 +1,10 @@
 <template>
   <div v-if="showAddTask">
-    <AddTask @new-task="addNewTask" />
+    <AddTask @new-task="addNewTask" v-bind:userName="userName" />
   </div>
   <Tasks
-    v-bind:completedTasks="completedTasks"
-    v-bind:inCompleteTasks="inCompleteTasks"
+    v-bind:completedTasks="$store.state.completedTasks"
+    v-bind:inCompleteTasks="$store.state.inCompleteTasks"
     @delete-task="onDelete"
     @toggle-reminder="onToggleReminder"
     @complete-toggle="completeToggle"
@@ -32,6 +32,7 @@ export default {
   },
   props: {
     showAddTask: Boolean,
+    userName: String,
   },
   methods: {
     async fetchTask(id) {
@@ -40,7 +41,11 @@ export default {
       return data;
     },
     async fetchTasks() {
-      const res = await fetch(`${localHost}/tasks`);
+      const res = await fetch(
+        `${localHost}/tasks?createdBy=${window.atob(
+          sessionStorage.getItem("username")
+        )}`
+      );
       const data = await res.json();
       return data;
     },
@@ -130,9 +135,7 @@ export default {
     },
   },
   async created() {
-    const tasks = await this.fetchTasks();
-    this.completedTasks = tasks.filter((task) => task.completed);
-    this.inCompleteTasks = tasks.filter((task) => !task.completed);
+    this.$store.dispatch("fetchTasks");
   },
 };
 </script>
